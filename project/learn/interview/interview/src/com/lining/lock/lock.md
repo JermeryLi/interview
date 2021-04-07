@@ -58,3 +58,44 @@ ReentrantLock、synchronized是可重入锁。 可重入锁的最大作用是避
 
 ​	写操作： 原子+独占  整个过程必须是一个完整的统一体，中间不许被分割，被打断。
 
+
+
+
+
+Lock 和synchronized 区别
+
+1、synchronized  是关键字  属于JVM层面。
+
+​	monitorenter 底层是通过monitor对象来实现的。wait/notify等方法也依赖monitor对象。只有在同步块或方法才能调用wait、notify等方法。
+
+​	monitorenter   1正常退出 monitorexit 2 异常退出 monitorexit  保证可以退出
+
+Lock api层面
+
+2、使用
+
+​	synchronized 不需要用户手动释放锁 当代码块或方法执行完成后系统会自动释放对锁的占用
+
+​	lock 需要手动释放锁，否则会出现死锁现象。
+
+​	lock 需要配合try final 使用
+
+3、等待是否可以中断
+
+​	synchronized 不可以 中断，除非正常运行完成或异常
+
+​	lock 可以冲断。设置超时时间 interrupt()
+
+4、加锁是否公平
+
+​	lock  ReentrantLock 默认是非公平锁  也可以设置公平锁
+
+​	synchronized 非公平锁
+
+5、唤醒 绑定多个条件condition
+
+​	synchronized 没有 
+
+​	ReentrantLock 用来实现分组唤醒需要唤醒的线程们，可以精确唤醒。而不是synchronized要么随机唤醒一个  要么全部唤醒。
+
+例题：  A线程打印5次， B打印10次，C打印15次  循环10论

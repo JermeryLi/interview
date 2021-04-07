@@ -31,3 +31,54 @@ BlockingQueue 核心方法
 7、LinkedBlockingDeque  有链表结构组成的双向堵塞队列
 
 idea 自带类图分析
+
+生产者 消费者
+
+为什么需要BlockingQueue?
+
+我们不需要关心什么时候需要堵塞线程，什么时候唤醒线程，Blocking已经给你一手包办。
+
+
+
+抛出异常
+
+​	add(e)  IllegalStateException
+
+​	remove()   NoSuchElementException
+
+​	 element()  队首元素 NoSuchElementException
+
+
+
+特殊值
+
+​	offer(e)   返回true false
+
+​	poll()   实际值 null
+
+​	peek()  队首元素 实际值 null
+
+
+
+​	put(e)  堵塞   
+
+​	take()  堵塞
+
+
+
+超时
+
+​	offer(e, time, unit)
+
+​	poll(time, unit)
+
+
+
+
+
+多线程判断 值 大多数用while 判断
+
+
+
+
+
